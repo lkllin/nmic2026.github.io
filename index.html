@@ -1,534 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>NMIC 2026</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NMIC 2026</title>
+  <style>
+    body {
+      margin: 10px;
+      background: #ffffff;
+      color: #333333;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      line-height: 1.26;
+    }
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    .banner {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 0;
+    }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background: #f2f2f2;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #333;
-        }
+    h1 {
+      margin: 18px 0 18px 0;
+      color: #111111;
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
 
-        a {
-            color: #1f5f9f;
-            text-decoration: none;
-        }
+    .subtitle {
+      margin: 0 0 34px 0;
+      color: #111111;
+      font-size: 14px;
+      font-weight: 700;
+    }
 
-        a:hover {
-            text-decoration: underline;
-        }
+    h2 {
+      margin: 16px 0 10px 0;
+      color: #111111;
+      font-size: 14px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
 
-        #page {
-            width: 1100px;
-            margin: 0 auto;
-            background: #fff;
-            min-height: 100vh;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.18);
-        }
+    p {
+      margin: 0 0 12px 0;
+      text-align: justify;
+    }
 
-        #header {
-            background: #1d4f7a;
-            color: #fff;
-            padding: 34px 35px 30px 35px;
-            border-bottom: 5px solid #d5a11e;
-        }
+    a {
+      color: #0000ee;
+      font-weight: 700;
+      text-decoration: underline;
+    }
 
-        #header h1 {
-            margin: 0 0 10px 0;
-            font-size: 28px;
-            font-weight: bold;
-            line-height: 1.25;
-        }
+    ul {
+      margin: 0 0 12px 22px;
+      padding-left: 16px;
+    }
 
-        #header .subtitle {
-            font-size: 17px;
-            margin-top: 6px;
-        }
+    ul ul {
+      margin: 2px 0 6px 18px;
+      padding-left: 14px;
+    }
 
-        #header .date {
-            font-size: 14px;
-            margin-top: 10px;
-            color: #f0f0f0;
-        }
+    li {
+      margin: 2px 0;
+    }
 
-        #nav {
-            background: #333;
-            border-bottom: 1px solid #222;
-        }
+    table {
+      width: 100%;
+      margin: 8px 0 16px 0;
+      border-collapse: collapse;
+      border-spacing: 0;
+      font-size: 12px;
+    }
 
-        #nav ul {
-            margin: 0;
-            padding: 0 25px;
-            list-style: none;
-            overflow: hidden;
-        }
+    th,
+    td {
+      padding: 12px 10px;
+      border-top: 1px solid #eeeeee;
+      text-align: left;
+      vertical-align: top;
+    }
 
-        #nav li {
-            float: left;
-        }
+    th {
+      color: #777777;
+      font-weight: 700;
+      background: #ffffff;
+    }
 
-        #nav a {
-            display: block;
-            padding: 12px 18px;
-            color: #fff;
-            font-size: 14px;
-            border-right: 1px solid #555;
-        }
+    tbody tr:nth-child(even) {
+      background: #f6f7f9;
+    }
 
-        #nav a:hover {
-            background: #1d4f7a;
-            text-decoration: none;
-        }
+    .name-col {
+      width: 50%;
+    }
 
-        #main {
-            display: flex;
-            align-items: flex-start;
-            padding: 28px 30px 40px 30px;
-        }
+    .org-col {
+      width: 50%;
+    }
 
-        #content {
-            width: 760px;
-            padding-right: 28px;
-            border-right: 1px solid #ddd;
-        }
+    .schedule-time {
+      width: 50%;
+    }
 
-        #sidebar {
-            width: 260px;
-            padding-left: 25px;
-        }
-
-        h2 {
-            margin: 0 0 18px 0;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #ccc;
-            color: #1d4f7a;
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        h3 {
-            margin: 24px 0 12px 0;
-            color: #1d4f7a;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        h4 {
-            margin: 18px 0 8px 0;
-            color: #333;
-            font-size: 15px;
-            font-weight: bold;
-        }
-
-        p {
-            margin: 0 0 12px 0;
-            text-align: justify;
-        }
-
-        .person {
-            margin-bottom: 18px;
-        }
-
-        .person p {
-            margin: 2px 0;
-        }
-
-        .bio p {
-            margin-bottom: 14px;
-        }
-
-        .indent {
-            text-indent: 2em;
-        }
-
-        .schedule p {
-            margin: 3px 0;
-        }
-
-        .tpc-list {
-            margin: 0;
-            padding-left: 0;
-            list-style: none;
-        }
-
-        .tpc-list li {
-            margin: 0 0 8px 0;
-        }
-
-        .topic-title {
-            margin: 16px 0 6px 0;
-            font-weight: bold;
-        }
-
-        .topic-list {
-            margin: 0 0 12px 28px;
-            padding: 0;
-            list-style-type: circle;
-        }
-
-        .topic-list li {
-            margin-bottom: 4px;
-        }
-
-        .sidebar-box {
-            margin-bottom: 28px;
-        }
-
-        .sidebar-box h3 {
-            margin: 0 0 14px 0;
-            padding-bottom: 7px;
-            border-bottom: 1px solid #ccc;
-            font-size: 19px;
-            color: #1d4f7a;
-        }
-
-        .news-item,
-        .date-item {
-            margin-bottom: 16px;
-        }
-
-        .news-item .news-date,
-        .date-item .date-time {
-            font-size: 15px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .news-item p,
-        .date-item p {
-            margin: 2px 0 0 0;
-            text-align: left;
-        }
-
-        #footer {
-            background: #333;
-            color: #ddd;
-            padding: 18px 30px;
-            font-size: 13px;
-            text-align: center;
-        }
-
-        @media (max-width: 1120px) {
-            #page {
-                width: 100%;
-            }
-
-            #main {
-                display: block;
-            }
-
-            #content {
-                width: 100%;
-                border-right: none;
-                padding-right: 0;
-            }
-
-            #sidebar {
-                width: 100%;
-                padding-left: 0;
-                margin-top: 30px;
-            }
-
-            #nav li {
-                float: none;
-                border-bottom: 1px solid #444;
-            }
-
-            #nav a {
-                border-right: none;
-            }
-        }
-    </style>
+    .section-gap {
+      margin-top: 18px;
+    }
+  </style>
 </head>
-
 <body>
-<div id="page">
+  <img class="banner" src="banner.jpg" alt="NMIC 2026 Workshop Banner" />
 
-    <div id="header">
-        <h1>IEEE MASS 2026 Workshop on 7th Network Meets Intelligent Computations, NMIC 2026</h1>
-        <div class="subtitle">Network Meets Intelligent Computations</div>
-        <div class="date">October 21-23, 2026</div>
-    </div>
+  <h1>The 7th International Workshop on Network Meets Intelligent Computations (NMIC) 2026</h1>
 
-    <div id="nav">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#organizers">Organizers</a></li>
-            <li><a href="#format">Format</a></li>
-            <li><a href="#committee">Committee</a></li>
-            <li><a href="#cfp">Call for Papers</a></li>
-            <li><a href="#submission">Submission</a></li>
-        </ul>
-    </div>
+  <div class="subtitle">In conjunction with IEEE MASS 2026, on 21-23 October 2026</div>
 
-    <div id="main">
+  <p>
+    The new computation technologies, such as LLMs and AI agents, big data analytics, modern machine learning technology,
+    artificial intelligence (AI), blockchain, and security processing, have the great potential to be embedded into network
+    to enable it to be intelligent and trustworthy. On the other hand, Computer Power Networks (CPN), Collaborative Edge
+    Computing (CEC), Information-Centric Networking (ICN), software-defined network (SDN), network slicing and data center
+    network have emerged as the novel networking paradigms for fast and efficient delivering and retrieving data. Against
+    this backdrop, there is a strong trend to move the computations from the cloud to not only the edges but also the
+    resource-sufficient networking nodes, which triggers the convergence between the emerging networking concepts and the
+    new computation technologies.
+  </p>
 
-        <div id="content">
+  <p>
+    The ultimate goals for networking researches include intelligence, trust, and efficiency, which can be enhanced by or
+    benefit for the intelligent computations. There are many open challenges for the emerging network concepts to meet the
+    intelligent computations: what computations should be embedded; which node should be enforced with the computation; how
+    can the computations, such as big data analytics, security, AI, machine learning, blockchain, be seamlessly embedded into
+    the network and enable it to be efficient, trustworthy and accountable; how to fast locate the required and suitable
+    computation nodes; how to efficiently transfer data through series of computation nodes; how to efficiently collect and
+    process the big networking data; how to design networking architectures and protocols to easily support the efficient
+    and diverse computations; how to achieve ultra-low latency communications with distributed computations; and how to
+    migrate from the Internet to the computation-enabled network.
+  </p>
 
-            <section id="home">
-                <h2>IEEE MASS 2026 Workshop on 7th Network Meets Intelligent Computations, NMIC 2026</h2>
+  <p>
+    The NMIC workshop 2026 solicits the papers that address the technical challenges and applications of the distributed
+    computations for networking, the intelligent computations supported by the novel networking technologies, and the
+    enforcement of series of computations. We envision that the combination of computations with networking will provide
+    more effective computation support for applications and enable the network to be more intelligent, trustworthy, and
+    efficient. The areas of interests include, but are not limited to, the following:
+  </p>
 
-                <h3 id="organizers">Workshop Co-Chairs:</h3>
+  <ul>
+    <li>Intelligent Computation for Networking
+      <ul>
+        <li>AI for networking</li>
+        <li>Networking architecture and protocols for integrating caching, computation, and communications</li>
+        <li>Security, privacy, trust, accountability for/with intelligent computation networking</li>
+        <li>Integrating Blockchain with networking</li>
+        <li>In-network data computations for network measurement and management</li>
+      </ul>
+    </li>
+    <li>Networking and Distributed Computing for Intelligent Applications
+      <ul>
+        <li>Networking for AI</li>
+        <li>In-network computation for future networks, inter-data center networking and 6G</li>
+        <li>Cooperative task scheduling and resource management for edge computing</li>
+        <li>Distributed machine learning on cloud/edges</li>
+        <li>Distributed computations for network anomaly detection and security</li>
+        <li>Network function virtualization, software-defined network, and network slicing for distributed computations</li>
+        <li>Distributed artificial intelligence with/for networking</li>
+        <li>Networking computations for big data, streaming, IoT, and AR/VR</li>
+        <li>Big data networking in healthcare, V2V, smart cities, industry and other applications</li>
+      </ul>
+    </li>
+    <li>Networked Intelligent Applications
+      <ul>
+        <li>AI Agents and LLMs driven Intelligent Applications</li>
+        <li>Cloud/Edge based Intelligent Applications</li>
+        <li>Blockchain-driven Intelligent Applications</li>
+        <li>Metaverse based Intelligent Applications</li>
+        <li>Emerging Networked Intelligent Applications</li>
+        <li>User Experience in Networked Intelligent Applications</li>
+        <li>Data Modelling for Networked Intelligent Applications</li>
+      </ul>
+    </li>
+  </ul>
 
-                <div class="person">
-                    <p><strong>Prof. Lei Yang</strong></p>
-                    <p>School of Software Engineering,</p>
-                    <p>South China University of Technology, China</p>
-                    <p>Email: <a href="mailto:sely@scut.edu.cn">sely@scut.edu.cn</a></p>
-                </div>
+  <h2>Submission Guidelines:</h2>
+  <p>
+    All submissions should follow the
+    <a href="https://www.ieee.org/conferences/publishing/templates.html">IEEE 8.5&quot; x 11&quot; Two-Column Format</a>.
+    Each submission can have up to 6 pages. Authors of accepted papers are expected to present their papers at the workshop.
+    All the papers are submitted via <a href="https://edas.info/">EDAS</a>.
+  </p>
 
-                <div class="person">
-                    <p><strong>Dr. Jiaxing Shen</strong></p>
-                    <p>School of Data Science,</p>
-                    <p>Lingnan University, Hong Kong, China</p>
-                    <p>Email: <a href="mailto:jiaxingshen@ln.edu.hk">jiaxingshen@ln.edu.hk</a></p>
-                </div>
+  <h2>Important Dates:</h2>
+  <table aria-label="Important Dates">
+    <tbody>
+      <tr>
+        <td>Paper Submission Deadline</td>
+        <td>Aug. 10, 2026</td>
+      </tr>
+      <tr>
+        <td>Paper Acceptance Notification</td>
+        <td>Sep. 10, 2026</td>
+      </tr>
+      <tr>
+        <td>Camera-Ready Due</td>
+        <td>Sep. 20, 2026</td>
+      </tr>
+      <tr>
+        <td>Conference Date</td>
+        <td>Oct. 21-23, 2026</td>
+      </tr>
+    </tbody>
+  </table>
 
-                <div class="person">
-                    <p><strong>Prof. Xiaobo Zhou</strong></p>
-                    <p>College of Intelligence and Computing,</p>
-                    <p>Tianjing University, China</p>
-                    <p>Email: <a href="mailto:xiaobo.zhou@tju.edu.cn">xiaobo.zhou@tju.edu.cn</a></p>
-                </div>
+  <h2>Workshop Co-Chairs</h2>
+  <table aria-label="Workshop Co-Chairs">
+    <thead>
+      <tr>
+        <th class="name-col">Chair Name</th>
+        <th class="org-col">Organization</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Lei Yang</td>
+        <td>School of Software Engineering, South China University of Technology, China<br />Email: sely@scut.edu.cn</td>
+      </tr>
+      <tr>
+        <td>Jiaxing Shen</td>
+        <td>School of Data Science, Lingnan University, Hong Kong, China<br />Email: jiaxingshen@ln.edu.hk</td>
+      </tr>
+      <tr>
+        <td>Xiaobo Zhou</td>
+        <td>College of Intelligence and Computing, Tianjin University, China<br />Email: xiaobo.zhou@tju.edu.cn</td>
+      </tr>
+    </tbody>
+  </table>
 
-                <h3>Short Biography of Organizers:</h3>
+  <h2>Short Biography of Organizers:</h2>
+  <p>
+    <strong>Lei Yang</strong> (Member, IEEE) received B.S. degree in electronic engineering from Wuhan University in 2007,
+    M.S. degree in computer science from Institute of Computing Technology, Chinese Academy of Sciences in 2010, and the
+    PhD degree in computer science on May, 2014. He is a Professor at School of Software Engineering, South China University
+    of Technology (SCUT). His research interests are cloud and edge computing, distributed machine learning and Internet of
+    Things. He has published over 70 papers in major international journals and conference proceedings including IEEE TMC,
+    IEEE TC, IEEE TPDS, IEEE TSC, IEEE TCC, ACM TKDD and IEEE INFOCOM. He is directing several research and development
+    projects from both government and industry agencies such National Natural Science Foundation of China (NSFC), Guangdong
+    Basic and Applied Basic Research Foundation and Tencent. He has won 2018 Ministry of Education Higher Education
+    Outstanding Scientific Research Output Awards – Natural Science Award (Second Class), and 2020 IEEE TCCLD Research
+    Innovation Award (Team award).
+  </p>
+  <p>
+    <strong>Jiaxing Shen</strong> (Member, IEEE, Member, ACM) is an Assistant Professor with the Department of Computing and
+    Decision Sciences at Lingnan University. He received the B.E. degree in Software Engineering from Jilin University in
+    2014, and the Ph.D. degree in Computer Science from the Hong Kong Polytechnic University in 2019. He was a visiting
+    scholar at the Media Lab, Massachusetts Institute of Technology in 2017. His current research theme is Human Dynamics
+    which aims to understand human behavior and provide actionable insights via cross-disciplinary approaches. Under the
+    theme, his research interests include mobile computing, data mining, and IoT. His research has been published in
+    top-tier journals such as IEEE TMC, ACM TOIS, ACM IMWUT, and IEEE TKDE. He was awarded conference best paper twice
+    including one from IEEE INFOCOM 2020.
+  </p>
+  <p>
+    <strong>Xiaobo Zhou</strong> (coming soon).
+  </p>
 
-                <div class="bio">
-                    <p>
-                        <strong>Lei Yang</strong> (Member, IEEE) received B.S. degree in electronic engineering from Wuhan University in 2007,
-                        M.S. degree in computer science from Institute of Computing Technology, Chinese Academy of Sciences in 2010,
-                        and the PhD degree in computer science on May, 2014. He is a Professor at School of Software Engineering,
-                        South China University of Technology (SCUT). His research interests are cloud and edge computing,
-                        distributed machine learning and Internet of Things.
-                    </p>
+  <h2>Planned Format of the Workshop:</h2>
+  <p>
+    The workshop will be presented in the forms of technical sessions. As follows are the detailed plan.
+  </p>
+  <table aria-label="Workshop Format">
+    <tbody>
+      <tr>
+        <td>Duration of the workshop</td>
+        <td>Half-Day</td>
+      </tr>
+      <tr>
+        <td>Number of refereed papers</td>
+        <td>10-15</td>
+      </tr>
+      <tr>
+        <td>Hot Topic Sessions</td>
+        <td>NMIC - Technical Session 1<br />NMIC - Technical Session 2</td>
+      </tr>
+    </tbody>
+  </table>
 
-                    <p>
-                        He has published over 70 papers in major international journals and conference proceedings including IEEE TMC,
-                        IEEE TC, IEEE TPDS, IEEE TSC, IEEE TCC, ACM TKDD and IEEE INFOCOM. He is directing several research and
-                        development projects from both government and industry agencies such National Natural Science Foundation of China (NSFC),
-                        Guangdong Basic and Applied Basic Research Foundation and Tencent. He has won 2018 Ministry of Education Higher Education
-                        Outstanding Scientific Research Output Awards – Natural Science Award (Second Class), and 2020 IEEE TCCLD Research
-                        Innovation Award (Team award).
-                    </p>
+  <h2>Tentative Schedule:</h2>
+  <table aria-label="Tentative Schedule">
+    <tbody>
+      <tr>
+        <td class="schedule-time">08:30-08:40 am</td>
+        <td>NMIC - opening</td>
+      </tr>
+      <tr>
+        <td>08:40-10:00 am</td>
+        <td>NMIC - Technical Session 1</td>
+      </tr>
+      <tr>
+        <td>10:00-10:20 am</td>
+        <td>Coffee Break</td>
+      </tr>
+      <tr>
+        <td>10:20-11:40 am</td>
+        <td>NMIC - Technical Session 2</td>
+      </tr>
+    </tbody>
+  </table>
 
-                    <p>
-                        <strong>Jiaxing Shen</strong> (Member, IEEE, Member, ACM) is an Assistant Professor with the Department of Computing and
-                        Decision Sciences at Lingnan University. He received the B.E. degree in Software Engineering from Jilin University in 2014,
-                        and the Ph.D. degree in Computer Science from the Hong Kong Polytechnic University in 2019. He was a visiting scholar at
-                        the Media Lab, Massachusetts Institute of Technology in 2017.
-                    </p>
-
-                    <p>
-                        His current research theme is Human Dynamics which aims to understand human behavior and provide actionable insights
-                        via cross-disciplinary approaches. Under the theme, his research interests include mobile computing, data mining, and IoT.
-                        His research has been published in top-tier journals such as IEEE TMC, ACM TOIS, ACM IMWUT, and IEEE TKDE.
-                        He was awarded conference best paper twice including one from IEEE INFOCOM 2020.
-                    </p>
-
-                    <p>
-                        <strong>Xiaobo Zhou</strong> (coming soon).
-                    </p>
-                </div>
-
-                <h3>A Brief Description of Workshop:</h3>
-                <p class="indent">
-                    The NMIC workshop 2026 solicits the papers that address the technical challenges and applications of the distributed
-                    computations for networking, the intelligent computations supported by the novel networking technologies, and the
-                    enforcement of series of computations.
-                </p>
-            </section>
-
-            <section id="format">
-                <h3>Planned Format of the workshop:</h3>
-                <p class="indent">
-                    The workshop will be presented in the forms of technical sessions. As follows are the detailed plan.
-                </p>
-
-                <div class="schedule">
-                    <p><strong>Duration of the workshop:</strong> Half-Day</p>
-
-                    <p><strong>Tentative Schedule:</strong></p>
-                    <p>08:30-08:40 am: NMIC - opening;</p>
-                    <p>08:40-10:00 am: NMIC - Technical Session 1;</p>
-                    <p>10:00-10:20 pm: Coffee Break;</p>
-                    <p>10:20-11:40 pm: NMIC - Technical Session 2;</p>
-
-                    <p>&nbsp;</p>
-                    <p><strong>Number of referred papers:</strong> 10-15;</p>
-
-                    <p><strong>Hot Topic Sessions:</strong></p>
-                    <p>NMIC - Technical Session 1;</p>
-                    <p>NMIC - Technical Session 2;</p>
-                </div>
-            </section>
-
-            <section id="committee">
-                <h3>Technical Program Committee Members:</h3>
-                <ul class="tpc-list">
-                    <li>Hui Cheng, University of Hertfordshire, U.K.</li>
-                    <li>Long Cheng, North China Electric Power University, China</li>
-                    <li>Jianguo Wang, Purdue University, U.S.</li>
-                    <li>Pan Zhou, Huazhong University of Science and Technology, China</li>
-                    <li>Wanyu Lin, The Hong Kong Polytechnic University, Hong Kong</li>
-                    <li>Xiaohua Xu, University of Science and Technology, China</li>
-                    <li>Yang Wang, Shenzhen Institute of Advanced Technology, CAS, China</li>
-                    <li>Zongjian He, The University of Auckland, New Zealand</li>
-                    <li>Qiang He, Huazhong University of Science and Technology, China</li>
-                    <li>Mingjin Zhang, The Hong Kong Polytechnic University, Hong Kong</li>
-                    <li>Jiaxing Shen, Lingnan University, Hong Kong</li>
-                    <li>Tao Wu, National University of Defense Technology, China</li>
-                    <li>Tianhui Meng, Beijing Normal University, China</li>
-                    <li>Chao Ma, Wuhan University, China</li>
-                    <li>Junbo Wang, Sun Yat-Sen University, China</li>
-                </ul>
-            </section>
-
-            <section id="cfp">
-                <h3>A Preliminary Call for Papers:</h3>
-
-                <p class="indent">
-                    The new computation technologies, such as LLMs and AI agents, big data analytics, modern machine learning technology,
-                    artificial intelligence (AI), blockchain, and security processing, have the great potential to be embedded into network
-                    to enable it to be intelligent and trustworthy. On the other hand, Computer Power Networks (CPN), Collaborative Edge
-                    Computing (CEC), Information-Centric Networking (ICN), software-defined network (SDN), network slicing and data center
-                    network have emerged as the novel networking paradigms for fast and efficient delivering and retrieving data.
-                    Against this backdrop, there is a strong trend to move the computations from the cloud to not only the edges but also
-                    the resource-sufficient networking nodes, which triggers the convergence between the emerging networking concepts and
-                    the new computation technologies.
-                </p>
-
-                <p class="indent">
-                    The ultimate goals for networking researches include intelligence, trust, and efficiency, which can be enhanced by or
-                    benefit for the intelligent computations. There are many open challenges for the emerging network concepts to meet the
-                    intelligent computations: what computations should be embedded; which node should be enforced with the computation;
-                    how can the computations, such as big data analytics, security, AI, machine learning, blockchain, be seamlessly embedded
-                    into the network and enable it to be efficient, trustworthy and accountable; how to fast locate the required and suitable
-                    computation nodes; how to efficiently transfer data through series of computation nodes; how to efficiently collect and
-                    process the big networking data; how to design networking architectures and protocols to easily support the efficient
-                    and diverse computations; how to achieve ultra-low latency communications with distributed computations; and how to migrate
-                    from the Internet to the computation-enabled network.
-                </p>
-
-                <p class="indent">
-                    The NMIC workshop 2026 solicits the papers that address the technical challenges and applications of the distributed
-                    computations for networking, the intelligent computations supported by the novel networking technologies, and the
-                    enforcement of series of computations. We envision that the combination of computations with networking will provide
-                    more effective computation support for applications and enable the network to be more intelligent, trustworthy, and efficient.
-                    The areas of interests include, but are not limited to, the following:
-                </p>
-
-                <p class="topic-title">§ Intelligent Computation for Networking</p>
-                <ul class="topic-list">
-                    <li>AI for networking</li>
-                    <li>Networking architecture and protocols for integrating caching, computation, and communications</li>
-                    <li>Security, privacy, trust, accountability for/with intelligent computation networking</li>
-                    <li>Integrating Blockchain with networking</li>
-                    <li>In-network data computations for network measurement and management</li>
-                </ul>
-
-                <p class="topic-title">§ Networking and Distributed Computing for Intelligent Applications</p>
-                <ul class="topic-list">
-                    <li>Networking for AI</li>
-                    <li>In-network computation for future networks, inter-data center networking and 6G</li>
-                    <li>Cooperative task scheduling and resource management for edge computing</li>
-                    <li>Distributed machine learning on cloud/edges</li>
-                    <li>Distributed computations for network anomaly detection and security</li>
-                    <li>Network function virtualization, software-defined network, and network slicing for distributed computations</li>
-                    <li>Distributed artificial intelligence with/for networking</li>
-                    <li>Networking computations for big data, streaming, IoT, and AR/VR</li>
-                    <li>Big data networking in healthcare, V2V, smart cities, industry and other applications</li>
-                </ul>
-
-                <p class="topic-title">§ Networked Intelligent Applications</p>
-                <ul class="topic-list">
-                    <li>AI Agents and LLMs driven Intelligent Applications</li>
-                    <li>Cloud/Edge based Intelligent Applications</li>
-                    <li>Blockchain-driven Intelligent Applications</li>
-                    <li>Metaverse based Intelligent Applications</li>
-                    <li>Emerging Networked Intelligent Applications</li>
-                    <li>User Experience in Networked Intelligent Applications</li>
-                    <li>Data Modelling for Networked Intelligent Applications</li>
-                </ul>
-            </section>
-
-            <section id="submission">
-                <h3>Paper Submission Guidelines</h3>
-                <p class="indent">
-                    All submissions should follow the IEEE 8.5″ x 11″ Two-Column Format. Each submission can have up to 6 pages.
-                    Authors of accepted papers are expected to present their papers at the workshop. All the papers are submitted via
-                    <a href="#" target="_blank">EDAS</a>.
-                </p>
-
-                <h3>Important Dates</h3>
-                <ul>
-                    <li><strong>Paper Submission Deadline:</strong> Aug. 10, 2026</li>
-                    <li><strong>Paper Acceptance Notification:</strong> Sep. 10, 2026</li>
-                    <li><strong>Camera-Ready Due:</strong> Sep. 20, 2026</li>
-                    <li><strong>Conference Date:</strong> Oct. 21-23, 2026</li>
-                </ul>
-            </section>
-
-        </div>
-
-        <div id="sidebar">
-
-            <div class="sidebar-box">
-                <h3>News</h3>
-
-                <div class="news-item">
-                    <div class="news-date">May 1, 2026</div>
-                    <p>Web site is up.</p>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-date">May 1, 2026</div>
-                    <p>Call for Papers published.</p>
-                </div>
-            </div>
-
-            <div class="sidebar-box">
-                <h3>Important Days</h3>
-
-                <div class="date-item">
-                    <div class="date-time">Aug. 10, 2026</div>
-                    <p>Paper Submission Deadline</p>
-                </div>
-
-                <div class="date-item">
-                    <div class="date-time">Sep. 10, 2026</div>
-                    <p>Paper Acceptance Notification</p>
-                </div>
-
-                <div class="date-item">
-                    <div class="date-time">Sep. 20, 2026</div>
-                    <p>Camera-Ready Due</p>
-                </div>
-
-                <div class="date-item">
-                    <div class="date-time">Oct. 21-23, 2026</div>
-                    <p>Conference Date</p>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div id="footer">
-        Copyright © 2026 IEEE MASS 2026 Workshop on Network Meets Intelligent Computations
-    </div>
-
-</div>
+  <h2>TPC Members</h2>
+  <table aria-label="TPC Members">
+    <thead>
+      <tr>
+        <th class="name-col">Member Name</th>
+        <th class="org-col">Organization</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Hui Cheng</td>
+        <td>University of Hertfordshire, U.K.</td>
+      </tr>
+      <tr>
+        <td>Long Cheng</td>
+        <td>North China Electric Power University, China</td>
+      </tr>
+      <tr>
+        <td>Jianguo Wang</td>
+        <td>Purdue University, U.S.</td>
+      </tr>
+      <tr>
+        <td>Pan Zhou</td>
+        <td>Huazhong University of Science and Technology, China</td>
+      </tr>
+      <tr>
+        <td>Wanyu Lin</td>
+        <td>The Hong Kong Polytechnic University, Hong Kong</td>
+      </tr>
+      <tr>
+        <td>Xiaohua Xu</td>
+        <td>University of Science and Technology, China</td>
+      </tr>
+      <tr>
+        <td>Yang Wang</td>
+        <td>Shenzhen Institute of Advanced Technology, CAS, China</td>
+      </tr>
+      <tr>
+        <td>Zongjian He</td>
+        <td>The University of Auckland, New Zealand</td>
+      </tr>
+      <tr>
+        <td>Qiang He</td>
+        <td>Huazhong University of Science and Technology, China</td>
+      </tr>
+      <tr>
+        <td>Mingjin Zhang</td>
+        <td>The Hong Kong Polytechnic University, Hong Kong</td>
+      </tr>
+      <tr>
+        <td>Jiaxing Shen</td>
+        <td>Lingnan University, Hong Kong</td>
+      </tr>
+      <tr>
+        <td>Tao Wu</td>
+        <td>National University of Defense Technology, China</td>
+      </tr>
+      <tr>
+        <td>Tianhui Meng</td>
+        <td>Beijing Normal University, China</td>
+      </tr>
+      <tr>
+        <td>Chao Ma</td>
+        <td>Wuhan University, China</td>
+      </tr>
+      <tr>
+        <td>Junbo Wang</td>
+        <td>Sun Yat-Sen University, China</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>
